@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import wateringImg from "../assets/watering.png";
 import { ButtonNext } from "../components/ButtonNext";
+import { Screens } from "../routes";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
@@ -17,7 +18,7 @@ export function Welcome() {
   const navigation = useNavigation();
 
   function navigateToUserIdentification() {
-    navigation.navigate("UserIdentification");
+    navigation.navigate(Screens.userIdentification);
   }
 
   return (

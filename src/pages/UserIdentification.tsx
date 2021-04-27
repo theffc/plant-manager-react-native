@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { AvoidKeyboard } from "../components/AvoidKeyboard";
 import { Button } from "../components/Button";
+import { Screens } from "../routes";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
@@ -24,7 +25,7 @@ export function UserIdentification() {
     isEditing[0] || isInputFilled();
 
   const navigateToConfirmation = () =>
-    navigation.navigate("Confirmation");
+    navigation.navigate(Screens.confirmation);
 
   return (
     <SafeAreaView

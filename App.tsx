@@ -7,9 +7,7 @@ import {
 import AppLoading from "expo-app-loading";
 import React from "react";
 import { StyleSheet } from "react-native";
-import { Confirmation } from "./src/pages/Confirmation";
-import { Welcome } from "./src/pages/Welcome";
-import Routes from "./src/routes";
+import { Navigation } from "./src/routes";
 
 export default function App() {
   const [isFontLoaded] = useFonts({
@@ -22,7 +20,7 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <Routes />;
+  return <Navigation />;
 }
 
 const styles = StyleSheet.create({
