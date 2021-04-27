@@ -1,36 +1,48 @@
-import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/core";
+import React from "react";
 import {
-  View,
-  Text,
+  Dimensions,
   Image,
-  TouchableOpacity,
-  StyleSheet,
   SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
 } from "react-native";
-
 import wateringImg from "../assets/watering.png";
-import { Button } from "../components/Button";
+import { ButtonNext } from "../components/ButtonNext";
 import colors from "../styles/colors";
+import fonts from "../styles/fonts";
 
 export function Welcome() {
-  const [isImageVisible, setIsImageVisible] = useState(false);
+  const navigation = useNavigation();
 
-  function toggleImageIsVisible() {
-    setIsImageVisible(!isImageVisible);
+  function navigateToUserIdentification() {
+    navigation.navigate("UserIdentification");
   }
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.title}>Gerencie suas plantas de forma fácil</Text>
+      <View style={styles.wrapper}>
+        <Text style={styles.title}>
+          Gerencie suas plantas de forma fácil
+        </Text>
 
-      {isImageVisible && <Image source={wateringImg} />}
+        <Image
+          style={styles.image}
+          source={wateringImg}
+          resizeMode="contain"
+        />
 
-      <Text style={styles.subtitle}>
-        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
-        sempre que precisar.
-      </Text>
+        <Text style={styles.subtitle}>
+          Não esqueça mais de regar suas plantas. Nós
+          cuidamos de lembrar você sempre que precisar.
+        </Text>
 
-      <Button title="Toogle Image" onPress={toggleImageIsVisible} />
+        <ButtonNext
+          title=">"
+          onPress={navigateToUserIdentification}
+        />
+      </View>
     </SafeAreaView>
   );
 }
@@ -38,16 +50,27 @@ export function Welcome() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  wrapper: {
+    flex: 1,
     alignItems: "center",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    paddingHorizontal: 15,
+  },
+
+  image: {
+    height: Dimensions.get("window").width * 0.7,
   },
 
   title: {
-    fontSize: 32,
-    fontWeight: "bold",
+    fontSize: 28,
     textAlign: "center",
     color: colors.heading,
     margin: 38,
+    fontFamily: fonts.heading,
+    lineHeight: 34,
+    marginHorizontal: "20%",
   },
 
   subtitle: {
@@ -55,5 +78,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.heading,
     paddingHorizontal: 20,
+    fontFamily: fonts.text,
   },
 });

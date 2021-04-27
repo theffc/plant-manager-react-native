@@ -6,16 +6,16 @@ import {
   TouchableOpacityProps,
 } from "react-native";
 import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+import { Entypo } from "@expo/vector-icons";
 
-interface ButtonProps extends TouchableOpacityProps {
+interface ButtonNextProps extends TouchableOpacityProps {
   title: string;
 }
 
-export function Button(props: ButtonProps) {
+export function ButtonNext(props: ButtonNextProps) {
   return (
     <TouchableOpacity style={styles.button} activeOpacity={0.7} {...props}>
-      <Text style={styles.text}>{props.title}</Text>
+      <Entypo name="chevron-right" style={styles.icon} />
     </TouchableOpacity>
   );
 }
@@ -25,16 +25,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.green,
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 16,
+    borderRadius: 10,
     padding: 12,
-    minWidth: 230,
-    minHeight: 56,
+    width: 56,
+    height: 56,
   },
 
-  text: {
-    fontSize: 17,
+  icon: {
+    fontSize: 28,
     color: colors.white,
-    fontFamily: fonts.text,
-    textAlign: "center",
   },
 });
