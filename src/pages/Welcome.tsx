@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import wateringImg from "../assets/watering.png";
 import { ButtonNext } from "../components/ButtonNext";
-import { Screens } from "../routes";
+import { Screens } from "../routes/Screens";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 

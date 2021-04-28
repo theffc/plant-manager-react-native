@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { AvoidKeyboard } from "../components/AvoidKeyboard";
 import { Button } from "../components/Button";
-import { Screens } from "../routes";
+import { Screens } from "../routes/Screens";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
