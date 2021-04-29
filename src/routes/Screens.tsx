@@ -4,13 +4,18 @@ export const Screens = {
     params: {},
   },
 
+  confirmation: {
+    name: "Confirmation",
+    params: {},
+  },
+
   userIdentification: {
     name: "UserIdentification",
     params: {},
   },
 
-  confirmation: {
-    name: "Confirmation",
+  plantSelector: {
+    name: "PlantSelector",
     params: {},
   },
 };

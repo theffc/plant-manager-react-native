@@ -1,4 +1,3 @@
-import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import {
   SafeAreaView,
@@ -7,16 +6,10 @@ import {
   View,
 } from "react-native";
 import { Button } from "../components/Button";
-import { Screens } from "../routes/Screens";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
-export function Confirmation() {
-  const navigation = useNavigation();
-
-  const navigateToPlantSelector = () =>
-    navigation.navigate(Screens.plantSelector);
-
+export function PlantSelector() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.form}>
@@ -29,10 +22,7 @@ export function Confirmation() {
           com muito cuidado.
         </Text>
 
-        <Button
-          title="Começar"
-          onPress={navigateToPlantSelector}
-        />
+        <Button title="Começar" />
       </View>
     </SafeAreaView>
   );

@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { merge } from "lodash";
 import React from "react";
 import { Confirmation } from "../pages/Confirmation";
+import { PlantSelector } from "../pages/PlantSelector";
 import { UserIdentification } from "../pages/UserIdentification";
 import { Welcome } from "../pages/Welcome";
 import colors from "../styles/colors";
@@ -21,18 +22,24 @@ export const Navigation = () => (
         },
       }}
     >
-      {allScreens()}
+      {stackedScreens()}
     </Stack.Navigator>
   </NavigationContainer>
 );
 
-const allScreens = () =>
-  Object.values(screensWithComponents).map(x => (
+const stackedScreens = () =>
+  routesWithComponents.map(x => (
     <Stack.Screen {...x} key={x.name} />
   ));
 
-// specially created to avoid import cycles
-const screensWithComponents = (function () {
+type Routes = Array<{
+  name: string;
+  params: object;
+  component: () => JSX.Element;
+}>;
+
+// just created to avoid import cycles
+const routesWithComponents: Routes = (function () {
   const components = {
     welcome: {
       component: Welcome,
@@ -43,24 +50,10 @@ const screensWithComponents = (function () {
     userIdentification: {
       component: UserIdentification,
     },
+    plantSelector: {
+      component: PlantSelector,
+    },
   };
 
-  // const mergeWithoutUsingLodash = {
-  //   confirmation: {
-  //     ...Screens.confirmation,
-  //     component: Confirmation,
-  //   },
-
-  //   welcome: {
-  //     ...Screens.welcome,
-  //     component: Welcome,
-  //   },
-
-  //   userIdentification: {
-  //     ...Screens.userIdentification,
-  //     component: UserIdentification
-  //   }
-  // };
-
-  return merge(components, Screens);
+  return Object.values(merge(components, Screens));
 })();
