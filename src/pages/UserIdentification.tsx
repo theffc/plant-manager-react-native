@@ -13,6 +13,7 @@ import { Button } from "../components/Button";
 import { Screens } from "../routes/Screens";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
+import { SetState } from "../utils/ReactUtils";
 
 export function UserIdentification() {
   const isEditing = useState(false);
@@ -30,7 +31,7 @@ export function UserIdentification() {
   return (
     <SafeAreaView
       style={styles.container}
-      onTouchStart={isEditing && Keyboard.dismiss}
+      onTouchStart={Keyboard.dismiss}
     >
       <AvoidKeyboard>
         <View style={styles.form}>
@@ -42,19 +43,10 @@ export function UserIdentification() {
             {isInputFilled() ? "😄" : "🤔"}
           </Text>
 
-          <TextInput
-            style={[
-              styles.input,
-              shouldHighlight() && {
-                borderColor: colors.green,
-              },
-            ]}
-            placeholder="Digite um nome"
-            onFocus={() => isEditing[1](true)}
-            onBlur={() => {
-              isEditing[1](false);
-            }}
-            onChangeText={name[1]}
+          <NameInput
+            setName={name[1]}
+            setIsEditing={isEditing[1]}
+            shouldHighlight={shouldHighlight()}
           />
 
           <Button
@@ -66,6 +58,27 @@ export function UserIdentification() {
     </SafeAreaView>
   );
 }
+
+const NameInput = (props: {
+  setName: SetState<string | undefined>;
+  setIsEditing: SetState<boolean>;
+  shouldHighlight: boolean;
+}) => (
+  <TextInput
+    style={[
+      styles.input,
+      props.shouldHighlight && {
+        borderColor: colors.green,
+      },
+    ]}
+    placeholder="Digite um nome"
+    onFocus={() => props.setIsEditing(true)}
+    onBlur={() => {
+      props.setIsEditing(false);
+    }}
+    onChangeText={props.setName}
+  />
+);
 
 const styles = StyleSheet.create({
   container: {
