@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
@@ -10,14 +10,6 @@ import colors from "../styles/colors";
 import fonts from "../styles/fonts";
 
 export function Confirmation() {
-  const isEditing = useState(false);
-  const name = useState<string>();
-
-  const isInputFilled = () => name[0] !== "";
-
-  const shouldHighlight = () =>
-    isEditing[0] || isInputFilled();
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.form}>
