@@ -1,20 +1,14 @@
 import React from "react";
 import {
-  Button,
-  ButtonProps,
-  Image,
-  StyleSheet,
   Text,
   TextStyle,
-  Touchable,
   TouchableHighlight,
   View,
   ViewStyle,
 } from "react-native";
+import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
 
 type EnvironmentButtonProps = {
   title: string;
@@ -36,8 +30,6 @@ export const EnvironmentButton = (
     </TouchableHighlight>
   );
 };
-
-const styles = StyleSheet.create({});
 
 function containerStyle(isSelected: boolean): ViewStyle {
   return {

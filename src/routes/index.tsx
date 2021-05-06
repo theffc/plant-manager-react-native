@@ -2,6 +2,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { merge } from "lodash";
 import React from "react";
+import { PlantCardList } from "../components/PlantCardList";
 import { Confirmation } from "../pages/Confirmation";
 import { PlantSelector } from "../pages/PlantSelector";
 import { UserIdentification } from "../pages/UserIdentification";

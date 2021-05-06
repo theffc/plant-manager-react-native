@@ -10,10 +10,11 @@ import fonts from "../styles/fonts";
 import image from "../assets/profile.jpeg";
 import { StyleProp } from "../utils/ReactUtils";
 
-export const ProfileHeader: React.FunctionComponent<{
-  name: string;
-  style?: StyleProp;
-}> = props => {
+export const ProfileHeader: React.FunctionComponent<
+  {
+    name: string;
+  } & StyleProp
+> = props => {
   return (
     <View style={[styles.container, props.style]}>
       <View>

@@ -1,22 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {
-  FlatList,
   SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-
-import { EnvironmentButton } from "../components/EnvironmentButton";
+import { EnvironmentButtonList } from "../components/EnvironmentButtonList";
+import { PlantCardList } from "../components/PlantCardList";
 import { ProfileHeader } from "../components/ProfileHeader";
 import { api } from "../services/api";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-
-type Environment = {
-  key: string;
-  title: string;
-};
+import { Environment, Plant } from "./../services/models";
 
 export function PlantSelector() {
   const [environments, setEnvironments] = useState<
@@ -50,44 +45,21 @@ export function PlantSelector() {
         </Text>
       </View>
 
-      <FlatList
-        data={environments}
-        renderItem={x => (
-          <EnvironmentButton
-            title={`${x.item.title}`}
-            style={x.index > 0 ? { marginLeft: 6 } : {}}
-          ></EnvironmentButton>
-        )}
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        style={{ overflow: "visible" }}
-      ></FlatList>
+      <EnvironmentButtonList
+        environments={environments}
+        style={styles.environments}
+      />
 
-      <View
-        style={{
-          flexDirection: "row",
-          // width: "100%",
-          backgroundColor: colors.blue_light,
-          marginTop: 20,
-          // alignContent: "stretch",
-          // alignItems: "stretch",
-        }}
-      >
-        <EnvironmentButton title="Sala"></EnvironmentButton>
-
-        <EnvironmentButton
-          title="Cozinha"
-          isSelected
-        ></EnvironmentButton>
-      </View>
+      <PlantCardList style={styles.plants} />
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    margin: 30,
-    justifyContent: "flex-start",
+    margin: 10,
+    backgroundColor: colors.blue_light,
+    flex: 1,
   },
 
   question: {
@@ -105,5 +77,13 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     color: colors.heading,
     fontSize: 17,
+  },
+
+  environments: {
+    marginBottom: 20,
+  },
+
+  plants: {
+    marginBottom: 10,
   },
 });

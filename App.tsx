@@ -6,7 +6,8 @@ import {
 } from "@expo-google-fonts/jost";
 import AppLoading from "expo-app-loading";
 import React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, SafeAreaView } from "react-native";
+import { PlantCardList } from "./src/components/PlantCardList";
 import { Navigation } from "./src/routes";
 
 export default function App() {
@@ -20,13 +21,9 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return <Navigation />;
+  return (
+    <SafeAreaView style={{ flex: 1 }}>
+      <PlantCardList />
+    </SafeAreaView>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
