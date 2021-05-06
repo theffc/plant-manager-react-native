@@ -1,20 +1,14 @@
 import React from "react";
 import {
-  Button,
-  ButtonProps,
   StyleSheet,
   Text,
-  TextStyle,
-  Touchable,
   TouchableHighlight,
   View,
-  ViewStyle,
 } from "react-native";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import { SvgFromUri } from "react-native-svg";
-
 import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
+import { SvgFromUri } from "react-native-svg";
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 
 type PlantCardProps = {
   name: string;

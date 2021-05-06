@@ -7,7 +7,7 @@ import {
 import AppLoading from "expo-app-loading";
 import React from "react";
 import { StyleSheet, SafeAreaView } from "react-native";
-import { PlantCardList } from "./src/components/PlantCardList";
+import { PlantCardList } from "./src/components/Plant/PlantCardList";
 import { Navigation } from "./src/routes";
 
 export default function App() {

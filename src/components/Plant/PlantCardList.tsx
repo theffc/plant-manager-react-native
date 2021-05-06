@@ -4,28 +4,19 @@ import {
   StyleSheet,
   ViewStyle,
 } from "react-native";
-import { api } from "../services/api";
-import colors from "../styles/colors";
-import { StyleProp } from "../utils/ReactUtils";
-import { Plant } from "./../services/models";
+import { api } from "../../services/api";
+import colors from "../../styles/colors";
+import { StyleProp } from "../../utils/ReactUtils";
+import { Plant } from "../../services/models";
 import { PlantCard } from "./PlantCard";
 
-export const PlantCardList: React.FunctionComponent<StyleProp> = props => {
-  const [plants, setPlants] = useState<Plant[]>([]);
-
-  useEffect(() => {
-    async function fetchPlants() {
-      const { data } = await api.get("plants");
-      setPlants(data);
-    }
-
-    fetchPlants();
-  }, []);
-
+export const PlantCardList: React.FC<
+  { plants: Plant[] } & StyleProp
+> = props => {
   return (
     <FlatList
       style={props.style}
-      data={plants}
+      data={props.plants}
       renderItem={x => (
         <PlantCard {...x.item} style={cardStyle(x.index)} />
       )}

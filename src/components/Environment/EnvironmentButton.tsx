@@ -2,13 +2,15 @@ import React from "react";
 import {
   Text,
   TextStyle,
+  Touchable,
   TouchableHighlight,
   View,
   ViewStyle,
 } from "react-native";
+import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+import colors from "../../styles/colors";
+import fonts from "../../styles/fonts";
 
 type EnvironmentButtonProps = {
   title: string;
@@ -21,13 +23,13 @@ export const EnvironmentButton = (
   const isSelected = props.isSelected ?? false;
 
   return (
-    <TouchableHighlight {...props}>
+    <TouchableWithoutFeedback {...props}>
       <View style={containerStyle(isSelected)}>
         <Text style={textStyle(isSelected)}>
           {props.title}
         </Text>
       </View>
-    </TouchableHighlight>
+    </TouchableWithoutFeedback>
   );
 };
 

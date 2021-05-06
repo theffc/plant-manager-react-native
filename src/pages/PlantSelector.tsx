@@ -5,8 +5,12 @@ import {
   Text,
   View,
 } from "react-native";
-import { EnvironmentButtonList } from "../components/EnvironmentButtonList";
-import { PlantCardList } from "../components/PlantCardList";
+import {
+  environmentAll,
+  EnvironmentButtonList,
+} from "../components/Environment/EnvironmentButtonList";
+import { Loading } from "../components/Loading";
+import { PlantCardList } from "../components/Plant/PlantCardList";
 import { ProfileHeader } from "../components/ProfileHeader";
 import { api } from "../services/api";
 import colors from "../styles/colors";
@@ -14,25 +18,45 @@ import fonts from "../styles/fonts";
 import { Environment, Plant } from "./../services/models";
 
 export function PlantSelector() {
-  const [environments, setEnvironments] = useState<
-    Environment[]
+  const [
+    selectedEnvironment,
+    setSelectedEnvironment,
+  ] = useState<Environment>(environmentAll);
+
+  const [plants, setPlants] = useState<Plant[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<
+    Plant[]
   >([]);
 
-  useEffect(() => {
-    async function fetchEnvironments() {
-      const { data } = await api.get("plants_environments");
+  const [isLoading, setIsLoading] = useState(true);
 
-      setEnvironments([
-        {
-          key: "all",
-          title: "Todos",
-        },
-        ...data,
-      ]);
+  useEffect(() => {
+    async function fetchPlants() {
+      const { data } = await api.get<Plant[]>("plants");
+      data.sort((a, b) => a.name.localeCompare(b.name));
+      setPlants(data);
+      setIsLoading(false);
     }
 
-    fetchEnvironments();
+    fetchPlants();
   }, []);
+
+  useEffect(() => {
+    console.log("bla");
+    if (selectedEnvironment === environmentAll) {
+      setFilteredPlants(plants);
+      return;
+    }
+
+    const filtered = plants.filter(x =>
+      x.environments.includes(selectedEnvironment.key),
+    );
+    setFilteredPlants(filtered);
+  }, [selectedEnvironment, plants]);
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -47,12 +71,16 @@ export function PlantSelector() {
         </View>
 
         <EnvironmentButtonList
-          environments={environments}
+          selected={selectedEnvironment}
+          setSelected={setSelectedEnvironment}
           style={styles.environments}
         />
       </View>
 
-      <PlantCardList style={styles.plants} />
+      <PlantCardList
+        plants={filteredPlants}
+        style={styles.plants}
+      />
     </SafeAreaView>
   );
 }
