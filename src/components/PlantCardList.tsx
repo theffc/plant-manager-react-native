@@ -24,42 +24,30 @@ export const PlantCardList: React.FunctionComponent<StyleProp> = props => {
 
   return (
     <FlatList
-      style={[styles.list, props.style]}
+      style={props.style}
       data={plants}
       renderItem={x => (
         <PlantCard {...x.item} style={cardStyle(x.index)} />
       )}
       numColumns={2}
-      contentContainerStyle={styles.content}
       columnWrapperStyle={styles.row}
+      contentContainerStyle={styles.content}
     />
   );
 };
 
 const styles = StyleSheet.create({
-  list: {
-    backgroundColor: colors.red,
-  },
-
   content: {
-    margin: 8,
-    backgroundColor: colors.blue,
+    paddingBottom: 10,
   },
 
   row: {
-    flexDirection: "row",
-    margin: 8,
-    backgroundColor: colors.green_light,
-    justifyContent: "space-around",
-    // alignContent: "space-between",
+    justifyContent: "space-evenly",
   },
 });
 
 function cardStyle(index: number): ViewStyle {
   return {
-    margin: 8,
-    // marginTop: index > 1 ? 6 : 8,
-    borderWidth: 1,
-    borderColor: colors.gray,
+    marginTop: index > 1 ? 12 : 0,
   };
 }

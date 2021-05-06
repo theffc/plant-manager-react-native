@@ -1,8 +1,7 @@
-import { merge } from "lodash";
 import React from "react";
-import { FlatList, ViewProps } from "react-native";
-import { Environment } from "./../services/models";
+import { FlatList } from "react-native";
 import { StyleProp } from "../utils/ReactUtils";
+import { Environment } from "./../services/models";
 import { EnvironmentButton } from "./EnvironmentButton";
 
 export const EnvironmentButtonList: React.FunctionComponent<
@@ -16,15 +15,12 @@ export const EnvironmentButtonList: React.FunctionComponent<
       renderItem={x => (
         <EnvironmentButton
           title={`${x.item.title}`}
-          style={x.index > 0 ? { marginLeft: 6 } : {}}
+          style={{ marginLeft: x.index > 0 ? 6 : 0 }}
         ></EnvironmentButton>
       )}
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={[
-        { overflow: "visible", height: 40 },
-        props.style,
-      ]}
+      style={[{ overflow: "visible" }, props.style]}
     />
   );
 };

@@ -21,9 +21,5 @@ export default function App() {
     return <AppLoading />;
   }
 
-  return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <PlantCardList />
-    </SafeAreaView>
-  );
+  return <Navigation />;
 }

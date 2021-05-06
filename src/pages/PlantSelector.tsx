@@ -36,19 +36,21 @@ export function PlantSelector() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ProfileHeader name="Tiago" />
+      <View style={styles.margin}>
+        <ProfileHeader name="Tiago" />
 
-      <View style={styles.question}>
-        <Text style={styles.first}>Em qual ambiente</Text>
-        <Text style={styles.second}>
-          Você quer colocar sua planta?
-        </Text>
+        <View style={styles.question}>
+          <Text style={styles.first}>Em qual ambiente</Text>
+          <Text style={styles.second}>
+            Você quer colocar sua planta?
+          </Text>
+        </View>
+
+        <EnvironmentButtonList
+          environments={environments}
+          style={styles.environments}
+        />
       </View>
-
-      <EnvironmentButtonList
-        environments={environments}
-        style={styles.environments}
-      />
 
       <PlantCardList style={styles.plants} />
     </SafeAreaView>
@@ -57,14 +59,16 @@ export function PlantSelector() {
 
 const styles = StyleSheet.create({
   container: {
-    margin: 10,
-    backgroundColor: colors.blue_light,
     flex: 1,
   },
 
+  margin: {
+    marginHorizontal: 20,
+  },
+
   question: {
-    marginTop: 30,
-    marginBottom: 30,
+    marginTop: 25,
+    marginBottom: 15,
   },
 
   first: {
@@ -80,10 +84,10 @@ const styles = StyleSheet.create({
   },
 
   environments: {
-    marginBottom: 20,
+    marginBottom: 25,
   },
 
   plants: {
-    marginBottom: 10,
+    flexShrink: 99,
   },
 });
