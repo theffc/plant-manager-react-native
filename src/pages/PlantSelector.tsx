@@ -1,60 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
-import {
-  environmentAll,
-  EnvironmentButtonList,
-} from "../components/Environment/EnvironmentButtonList";
+import { EnvironmentButtonList } from "../components/Environment/EnvironmentButtonList";
 import { Loading } from "../components/Loading";
 import { PlantCardList } from "../components/Plant/PlantCardList";
 import { ProfileHeader } from "../components/ProfileHeader";
-import { api } from "../services/api";
 import colors from "../styles/colors";
 import fonts from "../styles/fonts";
-import { Environment, Plant } from "./../services/models";
+import { usePlantSelectorState } from "./PlantSelectorState";
 
 export function PlantSelector() {
-  const [
-    selectedEnvironment,
-    setSelectedEnvironment,
-  ] = useState<Environment>(environmentAll);
+  const {
+    state,
+    selectEnvironment,
+  } = usePlantSelectorState();
 
-  const [plants, setPlants] = useState<Plant[]>([]);
-  const [filteredPlants, setFilteredPlants] = useState<
-    Plant[]
-  >([]);
-
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchPlants() {
-      const { data } = await api.get<Plant[]>("plants");
-      data.sort((a, b) => a.name.localeCompare(b.name));
-      setPlants(data);
-      setIsLoading(false);
-    }
-
-    fetchPlants();
-  }, []);
-
-  useEffect(() => {
-    console.log("bla");
-    if (selectedEnvironment === environmentAll) {
-      setFilteredPlants(plants);
-      return;
-    }
-
-    const filtered = plants.filter(x =>
-      x.environments.includes(selectedEnvironment.key),
-    );
-    setFilteredPlants(filtered);
-  }, [selectedEnvironment, plants]);
-
-  if (isLoading) {
+  if (state.isLoading) {
     return <Loading></Loading>;
   }
 
@@ -71,14 +36,14 @@ export function PlantSelector() {
         </View>
 
         <EnvironmentButtonList
-          selected={selectedEnvironment}
-          setSelected={setSelectedEnvironment}
+          selected={state.selectedEnvironment}
+          setSelected={selectEnvironment}
           style={styles.environments}
         />
       </View>
 
       <PlantCardList
-        plants={filteredPlants}
+        plants={state.filteredPlants}
         style={styles.plants}
       />
     </SafeAreaView>

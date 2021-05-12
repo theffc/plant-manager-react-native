@@ -20,7 +20,7 @@ export const environmentAll = {
 export const EnvironmentButtonList: React.FC<
   {
     selected: Environment;
-    setSelected: SetState<Environment>;
+    setSelected: (environment: Environment) => void;
   } & StyleProp
 > = props => {
   const [environments, setEnvironments] = useState<
