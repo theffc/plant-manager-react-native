@@ -34,7 +34,7 @@ const stackedScreens = () =>
 
 type Routes = Array<{
   name: string
-  params: object
+  params: Record<string, unknown>
   component: () => JSX.Element
 }>
 

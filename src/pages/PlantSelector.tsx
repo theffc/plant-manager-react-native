@@ -14,10 +14,8 @@ import fonts from "../styles/fonts"
 import { usePlantSelectorState } from "./PlantSelectorState"
 
 export function PlantSelector() {
-  const {
-    state,
-    selectEnvironment,
-  } = usePlantSelectorState()
+  const { state, selectEnvironment } =
+    usePlantSelectorState()
 
   if (state.isLoading) {
     return <Loading></Loading>

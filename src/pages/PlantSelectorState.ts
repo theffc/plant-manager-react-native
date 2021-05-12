@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { environmentAll } from "../components/Environment/EnvironmentButtonList";
-import { api } from "../services/api";
-import { Environment, Plant } from "./../services/models";
+import { useEffect, useState } from "react"
+import { environmentAll } from "../components/Environment/EnvironmentButtonList"
+import { api } from "../services/api"
+import { Environment, Plant } from "./../services/models"
 
 const initialState = {
   environments: [environmentAll],
@@ -11,42 +11,44 @@ const initialState = {
   filteredPlants: [] as Plant[],
 
   isLoading: true,
-};
+}
 
-type State = typeof initialState;
+type State = typeof initialState
 
 export const usePlantSelectorState = () => {
   const [state, _setState] = useState(initialState)
 
-  useEffect(() => { _fetchData() }, [])
+  useEffect(() => {
+    _fetchData()
+  }, [])
 
   async function _fetchData() {
     const allServices = await Promise.all([
       api.get<Plant[]>("plants"),
-      api.get<Environment[]>("plants_environments")
+      api.get<Environment[]>("plants_environments"),
     ])
 
-    const [
-      {data: plants},
-      {data: environments}
-    ] = allServices
+    const [{ data: plants }, { data: environments }] =
+      allServices
 
     plants.sort((a, b) => a.name.localeCompare(b.name))
 
-    environments.sort((a, b) => a.title.localeCompare(b.title))
+    environments.sort((a, b) =>
+      a.title.localeCompare(b.title),
+    )
 
     _setPartialState({
       environments: [environmentAll, ...environments],
       plants: plants,
       filteredPlants: plants,
-      isLoading: false
+      isLoading: false,
     })
   }
 
   function selectEnvironment(environment: Environment) {
     _setPartialState({
       selectedEnvironment: environment,
-      filteredPlants: _filterPlants(environment)
+      filteredPlants: _filterPlants(environment),
     })
   }
 
@@ -63,13 +65,13 @@ export const usePlantSelectorState = () => {
   function _setPartialState(newState: Partial<State>) {
     _setState(prev => ({
       ...prev,
-      ...newState
+      ...newState,
     }))
   }
 
   return {
     state,
-    selectEnvironment
+    selectEnvironment,
   }
 }
 
@@ -92,7 +94,7 @@ function reducer(state: State, action: Action): State {
 
   function filterPlants(environment: Environment) {
     if (environment === environmentAll) {
-      return state.plants;
+      return state.plants
     }
 
     return state.plants.filter(x =>

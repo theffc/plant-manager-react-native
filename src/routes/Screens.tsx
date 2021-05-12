@@ -18,4 +18,4 @@ export const Screens = {
     name: "PlantSelector",
     params: {},
   },
-};
+}
