@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 import {
   KeyboardAvoidingView,
   Platform,
-} from "react-native";
+} from "react-native"
 
 export const AvoidKeyboard: React.FunctionComponent = ({
   children,
 }) => {
-  const isIos = Platform.OS === "ios";
+  const isIos = Platform.OS === "ios"
   return (
     <KeyboardAvoidingView
       enabled={isIos}
@@ -15,5 +15,5 @@ export const AvoidKeyboard: React.FunctionComponent = ({
     >
       {children}
     </KeyboardAvoidingView>
-  );
-};
+  )
+}

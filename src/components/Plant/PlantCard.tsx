@@ -1,19 +1,19 @@
-import React from "react";
+import React from "react"
 import {
   StyleSheet,
   Text,
   TouchableHighlight,
   View,
-} from "react-native";
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
-import { SvgFromUri } from "react-native-svg";
-import colors from "../../styles/colors";
-import fonts from "../../styles/fonts";
+} from "react-native"
+import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable"
+import { SvgFromUri } from "react-native-svg"
+import colors from "../../styles/colors"
+import fonts from "../../styles/fonts"
 
 type PlantCardProps = {
-  name: string;
-  photo: string;
-} & GenericTouchableProps;
+  name: string
+  photo: string
+} & GenericTouchableProps
 
 export const PlantCard = (props: PlantCardProps) => {
   return (
@@ -30,8 +30,8 @@ export const PlantCard = (props: PlantCardProps) => {
         </Text>
       </View>
     </TouchableHighlight>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   card: {
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
     color: colors.heading,
     flexWrap: "wrap",
   },
-});
+})

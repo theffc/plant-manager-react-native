@@ -1,27 +1,19 @@
-import React, { useEffect, useState } from "react";
-import {
-  FlatList,
-  ListRenderItem,
-  ListRenderItemInfo,
-} from "react-native";
-import { api } from "../../services/api";
-import {
-  SetState,
-  StyleProp,
-} from "../../utils/ReactUtils";
-import { Environment } from "../../services/models";
-import { EnvironmentButton } from "./EnvironmentButton";
+import React from "react"
+import { FlatList, ListRenderItemInfo } from "react-native"
+import { Environment } from "../../services/models"
+import { StyleProp } from "../../utils/ReactUtils"
+import { EnvironmentButton } from "./EnvironmentButton"
 
 export const environmentAll = {
   key: "all",
   title: "Todos",
-};
+}
 
 export const EnvironmentButtonList: React.FC<
   {
-    environments: Environment[];
-    selected: Environment;
-    setSelected: (environment: Environment) => void;
+    environments: Environment[]
+    selected: Environment
+    setSelected: (environment: Environment) => void
   } & StyleProp
 > = props => {
   const ListItem = (x: ListRenderItemInfo<Environment>) => (
@@ -31,7 +23,7 @@ export const EnvironmentButtonList: React.FC<
       style={{ marginLeft: x.index > 0 ? 6 : 0 }}
       onPress={() => props.setSelected(x.item)}
     ></EnvironmentButton>
-  );
+  )
 
   return (
     <FlatList
@@ -41,5 +33,5 @@ export const EnvironmentButtonList: React.FC<
       showsHorizontalScrollIndicator={false}
       style={[{ overflow: "visible" }, props.style]}
     />
-  );
-};
+  )
+}

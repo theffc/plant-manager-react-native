@@ -1,8 +1,7 @@
-import LottieView from "lottie-react-native";
-import React from "react";
-import { View } from "react-native";
-import colors from "../styles/colors";
-import loadAnimation from "./../assets/load.json";
+import LottieView from "lottie-react-native"
+import React from "react"
+import { View } from "react-native"
+import loadAnimation from "./../assets/load.json"
 
 export const Loading = () => (
   <View
@@ -23,4 +22,4 @@ export const Loading = () => (
       }}
     />
   </View>
-);
+)

@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import { useNavigation } from "@react-navigation/core"
+import React from "react"
 import {
   Dimensions,
   Image,
@@ -7,18 +7,18 @@ import {
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import wateringImg from "../assets/watering.png";
-import { ButtonNext } from "../components/ButtonNext";
-import { Screens } from "../routes/Screens";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+} from "react-native"
+import wateringImg from "../assets/watering.png"
+import { ButtonNext } from "../components/ButtonNext"
+import { Screens } from "../routes/Screens"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
 
 export function Welcome() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   function navigateToUserIdentification() {
-    navigation.navigate(Screens.userIdentification);
+    navigation.navigate(Screens.userIdentification)
   }
 
   return (
@@ -45,7 +45,7 @@ export function Welcome() {
         />
       </View>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -81,4 +81,4 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     fontFamily: fonts.text,
   },
-});
+})

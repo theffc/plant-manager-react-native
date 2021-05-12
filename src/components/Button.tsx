@@ -1,23 +1,27 @@
-import React from "react";
+import React from "react"
 import {
-  TouchableOpacity,
-  Text,
   StyleSheet,
+  Text,
+  TouchableOpacity,
   TouchableOpacityProps,
-} from "react-native";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+} from "react-native"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
 
 interface ButtonProps extends TouchableOpacityProps {
-  title: string;
+  title: string
 }
 
 export function Button(props: ButtonProps) {
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7} {...props}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={0.7}
+      {...props}
+    >
       <Text style={styles.text}>{props.title}</Text>
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -37,4 +41,4 @@ const styles = StyleSheet.create({
     fontFamily: fonts.text,
     textAlign: "center",
   },
-});
+})

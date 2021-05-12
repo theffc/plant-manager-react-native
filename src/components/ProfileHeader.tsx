@@ -1,18 +1,13 @@
-import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import image from "../assets/profile.jpeg";
-import { StyleProp } from "../utils/ReactUtils";
+import React from "react"
+import { Image, StyleSheet, Text, View } from "react-native"
+import image from "../assets/profile.jpeg"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
+import { StyleProp } from "../utils/ReactUtils"
 
 export const ProfileHeader: React.FunctionComponent<
   {
-    name: string;
+    name: string
   } & StyleProp
 > = props => {
   return (
@@ -24,8 +19,8 @@ export const ProfileHeader: React.FunctionComponent<
 
       <Image source={image} style={styles.image} />
     </View>
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -51,4 +46,4 @@ const styles = StyleSheet.create({
     width: 60,
     borderRadius: 30,
   },
-});
+})

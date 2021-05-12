@@ -1,16 +1,15 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import { merge } from "lodash";
-import React from "react";
-import { PlantCardList } from "../components/Plant/PlantCardList";
-import { Confirmation } from "../pages/Confirmation";
-import { PlantSelector } from "../pages/PlantSelector";
-import { UserIdentification } from "../pages/UserIdentification";
-import { Welcome } from "../pages/Welcome";
-import colors from "../styles/colors";
-import { Screens } from "./Screens";
+import { NavigationContainer } from "@react-navigation/native"
+import { createStackNavigator } from "@react-navigation/stack"
+import { merge } from "lodash"
+import React from "react"
+import { Confirmation } from "../pages/Confirmation"
+import { PlantSelector } from "../pages/PlantSelector"
+import { UserIdentification } from "../pages/UserIdentification"
+import { Welcome } from "../pages/Welcome"
+import colors from "../styles/colors"
+import { Screens } from "./Screens"
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 export const Navigation = () => (
   <NavigationContainer>
@@ -26,18 +25,18 @@ export const Navigation = () => (
       {stackedScreens()}
     </Stack.Navigator>
   </NavigationContainer>
-);
+)
 
 const stackedScreens = () =>
   routesWithComponents.map(x => (
     <Stack.Screen {...x} key={x.name} />
-  ));
+  ))
 
 type Routes = Array<{
-  name: string;
-  params: object;
-  component: () => JSX.Element;
-}>;
+  name: string
+  params: object
+  component: () => JSX.Element
+}>
 
 // just created to avoid import cycles
 const routesWithComponents: Routes = (function () {
@@ -54,7 +53,7 @@ const routesWithComponents: Routes = (function () {
     plantSelector: {
       component: PlantSelector,
     },
-  };
+  }
 
-  return Object.values(merge(components, Screens));
-})();
+  return Object.values(merge(components, Screens))
+})()

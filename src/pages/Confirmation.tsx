@@ -1,21 +1,21 @@
-import { useNavigation } from "@react-navigation/core";
-import React from "react";
+import { useNavigation } from "@react-navigation/core"
+import React from "react"
 import {
   SafeAreaView,
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import { Button } from "../components/Button";
-import { Screens } from "../routes/Screens";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
+} from "react-native"
+import { Button } from "../components/Button"
+import { Screens } from "../routes/Screens"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
 
 export function Confirmation() {
-  const navigation = useNavigation();
+  const navigation = useNavigation()
 
   const navigateToPlantSelector = () =>
-    navigation.navigate(Screens.plantSelector);
+    navigation.navigate(Screens.plantSelector)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -35,7 +35,7 @@ export function Confirmation() {
         />
       </View>
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
     fontSize: 17,
     marginBottom: 40,
   },
-});
+})

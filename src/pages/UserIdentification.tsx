@@ -1,5 +1,5 @@
-import { useNavigation } from "@react-navigation/core";
-import React, { useState } from "react";
+import { useNavigation } from "@react-navigation/core"
+import React, { useState } from "react"
 import {
   Keyboard,
   SafeAreaView,
@@ -7,26 +7,26 @@ import {
   Text,
   TextInput,
   View,
-} from "react-native";
-import { AvoidKeyboard } from "../components/AvoidKeyboard";
-import { Button } from "../components/Button";
-import { Screens } from "../routes/Screens";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import { SetState } from "../utils/ReactUtils";
+} from "react-native"
+import { AvoidKeyboard } from "../components/AvoidKeyboard"
+import { Button } from "../components/Button"
+import { Screens } from "../routes/Screens"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
+import { SetState } from "../utils/ReactUtils"
 
 export function UserIdentification() {
-  const isEditing = useState(false);
-  const name = useState<string>();
-  const navigation = useNavigation();
+  const isEditing = useState(false)
+  const name = useState<string>()
+  const navigation = useNavigation()
 
-  const isInputFilled = () => name[0] !== "";
+  const isInputFilled = () => name[0] !== ""
 
   const shouldHighlight = () =>
-    isEditing[0] || isInputFilled();
+    isEditing[0] || isInputFilled()
 
   const navigateToConfirmation = () =>
-    navigation.navigate(Screens.confirmation);
+    navigation.navigate(Screens.confirmation)
 
   return (
     <SafeAreaView
@@ -56,13 +56,13 @@ export function UserIdentification() {
         </View>
       </AvoidKeyboard>
     </SafeAreaView>
-  );
+  )
 }
 
 const NameInput = (props: {
-  setName: SetState<string | undefined>;
-  setIsEditing: SetState<boolean>;
-  shouldHighlight: boolean;
+  setName: SetState<string | undefined>
+  setIsEditing: SetState<boolean>
+  shouldHighlight: boolean
 }) => (
   <TextInput
     style={[
@@ -74,11 +74,11 @@ const NameInput = (props: {
     placeholder="Digite um nome"
     onFocus={() => props.setIsEditing(true)}
     onBlur={() => {
-      props.setIsEditing(false);
+      props.setIsEditing(false)
     }}
     onChangeText={props.setName}
   />
-);
+)
 
 const styles = StyleSheet.create({
   container: {
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 40,
   },
-});
+})

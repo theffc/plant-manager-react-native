@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React from "react"
 import {
   FlatList,
   StyleSheet,
   ViewStyle,
-} from "react-native";
-import { api } from "../../services/api";
-import colors from "../../styles/colors";
-import { StyleProp } from "../../utils/ReactUtils";
-import { Plant } from "../../services/models";
-import { PlantCard } from "./PlantCard";
+} from "react-native"
+import { Plant } from "../../services/models"
+import { StyleProp } from "../../utils/ReactUtils"
+import { PlantCard } from "./PlantCard"
 
 export const PlantCardList: React.FC<
   { plants: Plant[] } & StyleProp
@@ -24,8 +22,8 @@ export const PlantCardList: React.FC<
       columnWrapperStyle={styles.row}
       contentContainerStyle={styles.content}
     />
-  );
-};
+  )
+}
 
 const styles = StyleSheet.create({
   content: {
@@ -35,10 +33,10 @@ const styles = StyleSheet.create({
   row: {
     justifyContent: "space-evenly",
   },
-});
+})
 
 function cardStyle(index: number): ViewStyle {
   return {
     marginTop: index > 1 ? 12 : 0,
-  };
+  }
 }

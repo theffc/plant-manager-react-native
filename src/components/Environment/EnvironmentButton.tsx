@@ -1,26 +1,24 @@
-import React from "react";
+import React from "react"
 import {
   Text,
   TextStyle,
-  Touchable,
-  TouchableHighlight,
   View,
   ViewStyle,
-} from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable";
-import colors from "../../styles/colors";
-import fonts from "../../styles/fonts";
+} from "react-native"
+import { TouchableWithoutFeedback } from "react-native-gesture-handler"
+import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable"
+import colors from "../../styles/colors"
+import fonts from "../../styles/fonts"
 
 type EnvironmentButtonProps = {
-  title: string;
-  isSelected?: boolean;
-} & GenericTouchableProps;
+  title: string
+  isSelected?: boolean
+} & GenericTouchableProps
 
 export const EnvironmentButton = (
   props: EnvironmentButtonProps,
 ) => {
-  const isSelected = props.isSelected ?? false;
+  const isSelected = props.isSelected ?? false
 
   return (
     <TouchableWithoutFeedback {...props}>
@@ -30,8 +28,8 @@ export const EnvironmentButton = (
         </Text>
       </View>
     </TouchableWithoutFeedback>
-  );
-};
+  )
+}
 
 function containerStyle(isSelected: boolean): ViewStyle {
   return {
@@ -45,7 +43,7 @@ function containerStyle(isSelected: boolean): ViewStyle {
     backgroundColor: isSelected
       ? colors.green_light
       : colors.shape,
-  };
+  }
 }
 
 function textStyle(isSelected: boolean): TextStyle {
@@ -55,5 +53,5 @@ function textStyle(isSelected: boolean): TextStyle {
     fontFamily: isSelected ? fonts.heading : fonts.text,
     color: isSelected ? colors.green_dark : colors.heading,
     // flexWrap: "nowrap",
-  };
+  }
 }

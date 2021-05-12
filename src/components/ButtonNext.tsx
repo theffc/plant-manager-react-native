@@ -1,23 +1,26 @@
-import React from "react";
+import { Entypo } from "@expo/vector-icons"
+import React from "react"
 import {
-  TouchableOpacity,
-  Text,
   StyleSheet,
+  TouchableOpacity,
   TouchableOpacityProps,
-} from "react-native";
-import colors from "../styles/colors";
-import { Entypo } from "@expo/vector-icons";
+} from "react-native"
+import colors from "../styles/colors"
 
 interface ButtonNextProps extends TouchableOpacityProps {
-  title: string;
+  title: string
 }
 
 export function ButtonNext(props: ButtonNextProps) {
   return (
-    <TouchableOpacity style={styles.button} activeOpacity={0.7} {...props}>
+    <TouchableOpacity
+      style={styles.button}
+      activeOpacity={0.7}
+      {...props}
+    >
       <Entypo name="chevron-right" style={styles.icon} />
     </TouchableOpacity>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -35,4 +38,4 @@ const styles = StyleSheet.create({
     fontSize: 28,
     color: colors.white,
   },
-});
+})
