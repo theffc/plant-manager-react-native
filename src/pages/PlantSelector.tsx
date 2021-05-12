@@ -1,26 +1,26 @@
-import React from "react";
+import React from "react"
 import {
   SafeAreaView,
   StyleSheet,
   Text,
   View,
-} from "react-native";
-import { EnvironmentButtonList } from "../components/Environment/EnvironmentButtonList";
-import { Loading } from "../components/Loading";
-import { PlantCardList } from "../components/Plant/PlantCardList";
-import { ProfileHeader } from "../components/ProfileHeader";
-import colors from "../styles/colors";
-import fonts from "../styles/fonts";
-import { usePlantSelectorState } from "./PlantSelectorState";
+} from "react-native"
+import { EnvironmentButtonList } from "../components/Environment/EnvironmentButtonList"
+import { Loading } from "../components/Loading"
+import { PlantCardList } from "../components/Plant/PlantCardList"
+import { ProfileHeader } from "../components/ProfileHeader"
+import colors from "../styles/colors"
+import fonts from "../styles/fonts"
+import { usePlantSelectorState } from "./PlantSelectorState"
 
 export function PlantSelector() {
   const {
     state,
     selectEnvironment,
-  } = usePlantSelectorState();
+  } = usePlantSelectorState()
 
   if (state.isLoading) {
-    return <Loading></Loading>;
+    return <Loading></Loading>
   }
 
   return (
@@ -36,6 +36,7 @@ export function PlantSelector() {
         </View>
 
         <EnvironmentButtonList
+          environments={state.environments}
           selected={state.selectedEnvironment}
           setSelected={selectEnvironment}
           style={styles.environments}
@@ -47,7 +48,7 @@ export function PlantSelector() {
         style={styles.plants}
       />
     </SafeAreaView>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -83,4 +84,4 @@ const styles = StyleSheet.create({
   plants: {
     flexShrink: 99,
   },
-});
+})

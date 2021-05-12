@@ -19,27 +19,11 @@ export const environmentAll = {
 
 export const EnvironmentButtonList: React.FC<
   {
+    environments: Environment[];
     selected: Environment;
     setSelected: (environment: Environment) => void;
   } & StyleProp
 > = props => {
-  const [environments, setEnvironments] = useState<
-    Environment[]
-  >([environmentAll]);
-
-  useEffect(() => {
-    async function fetchEnvironments() {
-      const { data } = await api.get<Environment[]>(
-        "plants_environments",
-      );
-      data.sort((a, b) => a.title.localeCompare(b.title));
-
-      setEnvironments([environmentAll, ...data]);
-    }
-
-    fetchEnvironments();
-  }, []);
-
   const ListItem = (x: ListRenderItemInfo<Environment>) => (
     <EnvironmentButton
       title={`${x.item.title}`}
@@ -51,7 +35,7 @@ export const EnvironmentButtonList: React.FC<
 
   return (
     <FlatList
-      data={environments}
+      data={props.environments}
       renderItem={ListItem}
       horizontal
       showsHorizontalScrollIndicator={false}

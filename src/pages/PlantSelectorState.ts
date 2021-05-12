@@ -16,41 +16,55 @@ const initialState = {
 type State = typeof initialState;
 
 export const usePlantSelectorState = () => {
-  const [state, setState] = useState(initialState);
-  function setPartialState(newState: Partial<State>) {
-    setState(prev => ({
-      ...prev,
-      ...newState
-    }))
-  }
+  const [state, _setState] = useState(initialState)
 
-  useEffect(() => { _fetchPlants() }, []);
+  useEffect(() => { _fetchData() }, [])
 
-  async function _fetchPlants() {
-    const { data } = await api.get<Plant[]>("plants");
-    data.sort((a, b) => a.name.localeCompare(b.name));
-    setPartialState({
-      plants: data,
-      filteredPlants: data,
+  async function _fetchData() {
+    const allServices = await Promise.all([
+      api.get<Plant[]>("plants"),
+      api.get<Environment[]>("plants_environments")
+    ])
+
+    const [
+      {data: plants},
+      {data: environments}
+    ] = allServices
+
+    plants.sort((a, b) => a.name.localeCompare(b.name))
+
+    environments.sort((a, b) => a.title.localeCompare(b.title))
+
+    _setPartialState({
+      environments: [environmentAll, ...environments],
+      plants: plants,
+      filteredPlants: plants,
       isLoading: false
     })
   }
 
   function selectEnvironment(environment: Environment) {
-    setPartialState({
+    _setPartialState({
       selectedEnvironment: environment,
       filteredPlants: _filterPlants(environment)
-    });
-  };
+    })
+  }
 
   function _filterPlants(environment: Environment) {
     if (environment === environmentAll) {
-      return state.plants;
+      return state.plants
     }
 
     return state.plants.filter(x =>
       x.environments.includes(environment.key),
-    );
+    )
+  }
+
+  function _setPartialState(newState: Partial<State>) {
+    _setState(prev => ({
+      ...prev,
+      ...newState
+    }))
   }
 
   return {
@@ -61,10 +75,10 @@ export const usePlantSelectorState = () => {
 
 type Action =
   | {
-      type: "didSelectEnvironment";
-      environment: Environment;
+      type: "didSelectEnvironment"
+      environment: Environment
     }
-  | { type: "didLoadPlants" };
+  | { type: "didLoadPlants" }
 
 function reducer(state: State, action: Action): State {
   switch (action.type) {
@@ -73,7 +87,7 @@ function reducer(state: State, action: Action): State {
         ...state,
         selectedEnvironment: action.environment,
         filteredPlants: filterPlants(action.environment),
-      };
+      }
   }
 
   function filterPlants(environment: Environment) {
@@ -83,14 +97,14 @@ function reducer(state: State, action: Action): State {
 
     return state.plants.filter(x =>
       x.environments.includes(environment.key),
-    );
+    )
   }
 
   async function fetchPlants() {
-    const { data } = await api.get<Plant[]>("plants");
-    data.sort((a, b) => a.name.localeCompare(b.name));
-    return data;
+    const { data } = await api.get<Plant[]>("plants")
+    data.sort((a, b) => a.name.localeCompare(b.name))
+    return data
   }
 
-  return initialState;
+  return initialState
 }
