@@ -10,12 +10,12 @@ import { SvgFromUri } from "react-native-svg"
 import colors from "../../styles/colors"
 import fonts from "../../styles/fonts"
 
-type PlantCardProps = {
+type Props = {
   name: string
   photo: string
 } & GenericTouchableProps
 
-export const PlantCard = (props: PlantCardProps) => {
+export const PlantCard = (props: Props) => {
   return (
     <TouchableHighlight {...props}>
       <View style={styles.card}>

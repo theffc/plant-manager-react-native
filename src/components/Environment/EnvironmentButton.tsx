@@ -10,14 +10,12 @@ import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescri
 import colors from "../../styles/colors"
 import fonts from "../../styles/fonts"
 
-type EnvironmentButtonProps = {
+type Props = {
   title: string
   isSelected?: boolean
 } & GenericTouchableProps
 
-export const EnvironmentButton = (
-  props: EnvironmentButtonProps,
-) => {
+export const EnvironmentButton = (props: Props) => {
   const isSelected = props.isSelected ?? false
 
   return (

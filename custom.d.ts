@@ -1,9 +1,9 @@
 declare module "*.png" {
-  const content: unknown
+  const content: never
   export default content
 }
 
 declare module "*.jpeg" {
-  const content: unknown
+  const content: never
   export default content
 }

@@ -9,13 +9,13 @@ export const environmentAll = {
   title: "Todos",
 }
 
-export const EnvironmentButtonList: React.FC<
-  {
-    environments: Environment[]
-    selected: Environment
-    setSelected: (environment: Environment) => void
-  } & StyleProp
-> = props => {
+type Props = {
+  environments: Environment[]
+  selected: Environment
+  setSelected: (environment: Environment) => void
+} & StyleProp
+
+export const EnvironmentButtonList = (props: Props) => {
   const ListItem = (x: ListRenderItemInfo<Environment>) => (
     <EnvironmentButton
       title={`${x.item.title}`}

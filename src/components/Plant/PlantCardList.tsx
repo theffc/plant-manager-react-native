@@ -8,9 +8,11 @@ import { Plant } from "../../services/models"
 import { StyleProp } from "../../utils/ReactUtils"
 import { PlantCard } from "./PlantCard"
 
-export const PlantCardList: React.FC<
-  { plants: Plant[] } & StyleProp
-> = props => {
+type Props = {
+  plants: Plant[]
+} & StyleProp
+
+export const PlantCardList = (props: Props) => {
   return (
     <FlatList
       style={props.style}
