@@ -22,8 +22,8 @@ export function Welcome() {
   }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.wrapper}>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
         <Text style={styles.title}>
           Gerencie suas plantas de forma fácil
         </Text>
@@ -49,29 +49,30 @@ export function Welcome() {
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
+
   container: {
     flex: 1,
-  },
-
-  wrapper: {
-    flex: 1,
     alignItems: "center",
-    justifyContent: "space-around",
-    paddingHorizontal: 15,
-  },
-
-  image: {
-    height: Dimensions.get("window").width * 0.7,
+    justifyContent: "space-between",
+    marginHorizontal: 15,
+    marginVertical: 20,
   },
 
   title: {
     fontSize: 28,
     textAlign: "center",
     color: colors.heading,
-    margin: 38,
     fontFamily: fonts.heading,
-    lineHeight: 34,
-    marginHorizontal: "20%",
+    marginHorizontal: "10%",
+    marginTop: 20,
+  },
+
+  image: {
+    maxHeight: Dimensions.get("window").height * 0.5,
+    flexShrink: 99,
   },
 
   subtitle: {
