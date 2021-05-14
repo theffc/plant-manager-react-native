@@ -19,10 +19,12 @@ export const PlantCard = (props: Props) => {
   return (
     <TouchableHighlight {...props}>
       <View style={styles.card}>
-        <SvgFromUri
-          style={styles.image}
-          uri={props.photo}
-        />
+        <View style={styles.imageContainer}>
+          <SvgFromUri
+            uri={props.photo}
+            style={styles.image}
+          />
+        </View>
         <Text style={styles.text} numberOfLines={2}>
           {props.name}
         </Text>
@@ -36,20 +38,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 12,
-    paddingHorizontal: 15,
     backgroundColor: colors.shape,
     padding: 20,
     height: 160,
     aspectRatio: 1,
   },
 
-  image: {
-    height: 90,
-    width: 70,
-    marginBottom: 12,
+  imageContainer: {
+    width: "100%",
     flexGrow: 1,
     flexShrink: 999,
-    overflow: "hidden",
+    marginBottom: 12,
+  },
+
+  image: {
+    flexGrow: 1,
+    flexShrink: 999,
+    height: "100%",
+    alignSelf: "center",
   },
 
   text: {

@@ -14,9 +14,9 @@ interface ButtonNextProps extends TouchableOpacityProps {
 export function ButtonNext(props: ButtonNextProps) {
   return (
     <TouchableOpacity
-      style={styles.button}
-      activeOpacity={0.7}
       {...props}
+      style={[styles.button, props.style]}
+      activeOpacity={0.7}
     >
       <Entypo name="chevron-right" style={styles.icon} />
     </TouchableOpacity>

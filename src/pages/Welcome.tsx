@@ -28,11 +28,7 @@ export function Welcome() {
           Gerencie suas plantas de forma fácil
         </Text>
 
-        <Image
-          style={styles.image}
-          source={wateringImg}
-          resizeMode="contain"
-        />
+        <Image style={styles.image} source={wateringImg} />
 
         <Text style={styles.subtitle}>
           Não esqueça mais de regar suas plantas. Nós
@@ -55,31 +51,37 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
+    justifyContent: "center",
     alignItems: "center",
-    justifyContent: "space-between",
     marginHorizontal: 15,
-    marginVertical: 20,
+    marginVertical: 40,
   },
 
   title: {
-    fontSize: 28,
+    marginHorizontal: "10%",
+    marginBottom: 40,
+
+    fontSize: 26,
     textAlign: "center",
     color: colors.heading,
     fontFamily: fonts.heading,
-    marginHorizontal: "10%",
-    marginTop: 20,
   },
 
   image: {
-    maxHeight: Dimensions.get("window").height * 0.5,
+    marginBottom: 40,
+
+    resizeMode: "contain",
+    maxHeight: Dimensions.get("window").height * 0.4,
     flexShrink: 99,
   },
 
   subtitle: {
-    fontSize: 18,
+    marginHorizontal: "5%",
+    marginBottom: 50,
+
+    fontSize: 16,
     textAlign: "center",
     color: colors.heading,
-    paddingHorizontal: 20,
     fontFamily: fonts.text,
   },
 })
