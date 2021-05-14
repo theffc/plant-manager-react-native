@@ -16,14 +16,11 @@ import fonts from "../styles/fonts"
 import { SetState } from "../utils/ReactUtils"
 
 export function UserIdentification() {
-  const isEditing = useState(false)
-  const name = useState<string>()
+  const [isEditing, setIsEditing] = useState(false)
+  const [name, setName] = useState<string>("")
   const navigation = useNavigation()
 
-  const isInputFilled = () => name[0] !== ""
-
-  const shouldHighlight = () =>
-    isEditing[0] || isInputFilled()
+  const isInputFilled = () => name.length >= 3
 
   const navigateToConfirmation = () =>
     navigation.navigate(Screens.confirmation)
@@ -44,14 +41,15 @@ export function UserIdentification() {
           </Text>
 
           <NameInput
-            setName={name[1]}
-            setIsEditing={isEditing[1]}
-            shouldHighlight={shouldHighlight()}
+            setName={setName}
+            isEditing={isEditing}
+            setIsEditing={setIsEditing}
           />
 
           <Button
             title="Confirmar"
             onPress={navigateToConfirmation}
+            isEnabled={isInputFilled()}
           />
         </View>
       </AvoidKeyboard>
@@ -60,23 +58,22 @@ export function UserIdentification() {
 }
 
 const NameInput = (props: {
-  setName: SetState<string | undefined>
+  setName: SetState<string>
+  isEditing: boolean
   setIsEditing: SetState<boolean>
-  shouldHighlight: boolean
 }) => (
   <TextInput
     style={[
       styles.input,
-      props.shouldHighlight && {
+      props.isEditing && {
         borderColor: colors.green,
       },
     ]}
     placeholder="Digite um nome"
     onFocus={() => props.setIsEditing(true)}
-    onBlur={() => {
-      props.setIsEditing(false)
-    }}
+    onBlur={() => props.setIsEditing(false)}
     onChangeText={props.setName}
+    selectionColor={colors.green}
   />
 )
 

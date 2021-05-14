@@ -1,22 +1,28 @@
 import React from "react"
 import {
+  ButtonProps as RNProps,
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableOpacityProps,
+  ViewStyle,
 } from "react-native"
 import colors from "../styles/colors"
 import fonts from "../styles/fonts"
 
-interface ButtonProps extends TouchableOpacityProps {
+type ButtonProps = {
   title: string
+  isEnabled?: boolean
+  onPress: RNProps["onPress"]
 }
 
 export function Button(props: ButtonProps) {
+  const isEnabled = props.isEnabled ?? true
+
   return (
     <TouchableOpacity
-      style={styles.button}
-      activeOpacity={0.7}
+      style={containerStyle(isEnabled)}
+      disabled={!isEnabled}
+      activeOpacity={0.8}
       {...props}
     >
       <Text style={styles.text}>{props.title}</Text>
@@ -25,16 +31,6 @@ export function Button(props: ButtonProps) {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    backgroundColor: colors.green,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 16,
-    padding: 12,
-    minWidth: 230,
-    minHeight: 56,
-  },
-
   text: {
     fontSize: 17,
     color: colors.white,
@@ -42,3 +38,16 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 })
+
+function containerStyle(isEnabled: boolean): ViewStyle {
+  return {
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 16,
+    padding: 12,
+    minWidth: 230,
+    minHeight: 56,
+    backgroundColor: colors.green,
+    opacity: isEnabled ? 1.0 : 0.5,
+  }
+}
