@@ -22,8 +22,6 @@ export const PlantCard = (props: Props) => {
         <SvgFromUri
           style={styles.image}
           uri={props.photo}
-          height={90}
-          width={70}
         />
         <Text style={styles.text} numberOfLines={2}>
           {props.name}
@@ -41,17 +39,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     backgroundColor: colors.shape,
     padding: 20,
-    // flexWrap: "wrap",
-    maxHeight: 160,
+    height: 160,
     aspectRatio: 1,
   },
 
   image: {
-    // resizeMode: "center",
     height: 90,
     width: 70,
     marginBottom: 12,
-    flexShrink: 1,
+    flexGrow: 1,
+    flexShrink: 999,
     overflow: "hidden",
   },
 
