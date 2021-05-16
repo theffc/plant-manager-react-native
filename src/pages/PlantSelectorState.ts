@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { environmentAll } from "../components/Environment/EnvironmentButtonList"
-import { api } from "../services/api"
+import {
+  fetchEnvironments,
+  fetchPlants,
+} from "../services/api"
 import { Environment, Plant } from "./../services/models"
 
 const initialState = {
@@ -24,8 +27,8 @@ export const usePlantSelectorState = () => {
 
   async function _fetchData() {
     const allServices = await Promise.all([
-      api.get<Plant[]>("plants"),
-      api.get<Environment[]>("plants_environments"),
+      fetchPlants(),
+      fetchEnvironments(),
     ])
 
     const [{ data: plants }, { data: environments }] =
@@ -73,40 +76,4 @@ export const usePlantSelectorState = () => {
     state,
     selectEnvironment,
   }
-}
-
-type Action =
-  | {
-      type: "didSelectEnvironment"
-      environment: Environment
-    }
-  | { type: "didLoadPlants" }
-
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case "didSelectEnvironment":
-      return {
-        ...state,
-        selectedEnvironment: action.environment,
-        filteredPlants: filterPlants(action.environment),
-      }
-  }
-
-  function filterPlants(environment: Environment) {
-    if (environment === environmentAll) {
-      return state.plants
-    }
-
-    return state.plants.filter(x =>
-      x.environments.includes(environment.key),
-    )
-  }
-
-  async function fetchPlants() {
-    const { data } = await api.get<Plant[]>("plants")
-    data.sort((a, b) => a.name.localeCompare(b.name))
-    return data
-  }
-
-  return initialState
 }

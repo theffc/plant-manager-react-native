@@ -59,20 +59,20 @@ const styles = StyleSheet.create({
   },
 
   question: {
-    marginTop: 25,
-    marginBottom: 15,
+    marginTop: 20,
+    marginBottom: 10,
   },
 
   first: {
     fontFamily: fonts.heading,
     color: colors.heading,
-    fontSize: 17,
+    fontSize: 16,
   },
 
   second: {
     fontFamily: fonts.text,
     color: colors.heading,
-    fontSize: 17,
+    fontSize: 15,
   },
 
   environments: {
