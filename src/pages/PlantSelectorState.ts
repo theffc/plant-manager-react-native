@@ -13,7 +13,10 @@ const initialState = {
   plants: [] as Plant[],
   filteredPlants: [] as Plant[],
 
-  isLoading: true,
+  requestState: "loading" as
+    | "loading"
+    | "error"
+    | "success",
 }
 
 type State = typeof initialState
@@ -26,10 +29,18 @@ export const usePlantSelectorState = () => {
   }, [])
 
   async function _fetchData() {
-    const allServices = await Promise.all([
-      fetchPlants(),
-      fetchEnvironments(),
-    ])
+    let allServices
+    try {
+      allServices = await Promise.all([
+        fetchPlants(),
+        fetchEnvironments(),
+      ])
+    } catch {
+      _setPartialState({
+        requestState: "error",
+      })
+      return
+    }
 
     const [{ data: plants }, { data: environments }] =
       allServices
@@ -44,7 +55,7 @@ export const usePlantSelectorState = () => {
       environments: [environmentAll, ...environments],
       plants: plants,
       filteredPlants: plants,
-      isLoading: false,
+      requestState: "success",
     })
   }
 

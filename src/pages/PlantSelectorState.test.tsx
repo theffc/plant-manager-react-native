@@ -18,8 +18,8 @@ test("PlantSelectorState", async () => {
         },
       ],
       "filteredPlants": Array [],
-      "isLoading": true,
       "plants": Array [],
+      "requestState": "loading",
       "selectedEnvironment": Object {
         "key": "all",
         "title": "Todos",
@@ -28,17 +28,19 @@ test("PlantSelectorState", async () => {
   `)
 
   await waitForValueToChange(
-    () => r.current.state.isLoading,
+    () => r.current.state.requestState,
     { timeout: 3000 },
   )
 
   act(() => {
     r.current.selectEnvironment({
-      key: "Banheiro",
+      key: "bathroom",
       title: "",
     })
   })
 
-  expect(r.current.state.environments.length > 1)
-  expect(r.current.state.filteredPlants.length === 3)
+  expect(
+    r.current.state.environments.length,
+  ).toBeGreaterThan(1)
+  expect(r.current.state.filteredPlants.length).toEqual(3)
 })

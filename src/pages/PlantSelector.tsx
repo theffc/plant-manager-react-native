@@ -17,8 +17,12 @@ export function PlantSelector() {
   const { state, selectEnvironment } =
     usePlantSelectorState()
 
-  if (state.isLoading) {
+  if (state.requestState === "loading") {
     return <Loading></Loading>
+  }
+
+  if (state.requestState === "error") {
+    return <Text>Error</Text>
   }
 
   return (
