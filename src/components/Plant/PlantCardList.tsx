@@ -1,9 +1,5 @@
 import React from "react"
-import {
-  FlatList,
-  StyleSheet,
-  ViewStyle,
-} from "react-native"
+import { FlatList, StyleSheet, ViewStyle } from "react-native"
 import { Plant } from "../../services/models"
 import { StyleProp } from "../../utils/ReactUtils"
 import { PlantCard } from "./PlantCard"
@@ -17,9 +13,7 @@ export const PlantCardList = (props: Props) => {
     <FlatList
       style={props.style}
       data={props.plants}
-      renderItem={x => (
-        <PlantCard {...x.item} style={cardStyle(x.index)} />
-      )}
+      renderItem={x => <PlantCard {...x.item} style={cardStyle(x.index)} />}
       numColumns={2}
       columnWrapperStyle={styles.row}
       contentContainerStyle={styles.content}

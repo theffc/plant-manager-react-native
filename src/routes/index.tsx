@@ -28,9 +28,7 @@ export const Navigation = () => (
 )
 
 const stackedScreens = () =>
-  routesWithComponents.map(x => (
-    <Stack.Screen {...x} key={x.name} />
-  ))
+  routesWithComponents.map(x => <Stack.Screen {...x} key={x.name} />)
 
 type Routes = Array<{
   name: string

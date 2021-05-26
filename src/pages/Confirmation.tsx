@@ -1,11 +1,6 @@
 import { useNavigation } from "@react-navigation/core"
 import React from "react"
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native"
+import { SafeAreaView, StyleSheet, Text, View } from "react-native"
 import { Button } from "../components/Button"
 import { Screens } from "../routes/Screens"
 import colors from "../styles/colors"
@@ -25,14 +20,10 @@ export function Confirmation() {
         <Text style={styles.title}>Prontinho</Text>
 
         <Text style={styles.subtitle}>
-          Agora vamos começar a cuidar das suas plantinhas
-          com muito cuidado.
+          Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
         </Text>
 
-        <Button
-          title="Começar"
-          onPress={navigateToPlantSelector}
-        />
+        <Button title="Começar" onPress={navigateToPlantSelector} />
       </View>
     </SafeAreaView>
   )

@@ -1,9 +1,6 @@
 import { useEffect, useState } from "react"
 import { environmentAll } from "../components/Environment/EnvironmentButtonList"
-import {
-  fetchEnvironments,
-  fetchPlants,
-} from "../services/api"
+import { fetchEnvironments, fetchPlants } from "../services/api"
 import { Environment, Plant } from "./../services/models"
 
 export const initialState = {
@@ -13,10 +10,7 @@ export const initialState = {
   plants: [] as Plant[],
   filteredPlants: [] as Plant[],
 
-  requestState: "loading" as
-    | "loading"
-    | "error"
-    | "success",
+  requestState: "loading" as "loading" | "error" | "success",
 }
 
 export type State = typeof initialState
@@ -38,9 +32,7 @@ export const usePlantSelectorState = () => {
 
     plants.sort((a, b) => a.name.localeCompare(b.name))
 
-    environments.sort((a, b) =>
-      a.title.localeCompare(b.title),
-    )
+    environments.sort((a, b) => a.title.localeCompare(b.title))
 
     _setPartialState({
       environments: [environmentAll, ...environments],
@@ -53,10 +45,7 @@ export const usePlantSelectorState = () => {
   async function _callAllServices() {
     let allServices
     try {
-      allServices = await Promise.all([
-        fetchPlants(),
-        fetchEnvironments(),
-      ])
+      allServices = await Promise.all([fetchPlants(), fetchEnvironments()])
     } catch {
       _setPartialState({
         requestState: "error",
@@ -77,9 +66,7 @@ export const usePlantSelectorState = () => {
       return state.plants
     }
 
-    return state.plants.filter(x =>
-      x.environments.includes(environment.key),
-    )
+    return state.plants.filter(x => x.environments.includes(environment.key))
   }
 
   function _setPartialState(newState: Partial<State>) {

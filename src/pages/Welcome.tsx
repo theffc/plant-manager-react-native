@@ -24,21 +24,16 @@ export function Welcome() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-        <Text style={styles.title}>
-          Gerencie suas plantas de forma fácil
-        </Text>
+        <Text style={styles.title}>Gerencie suas plantas de forma fácil</Text>
 
         <Image style={styles.image} source={wateringImg} />
 
         <Text style={styles.subtitle}>
-          Não esqueça mais de regar suas plantas. Nós
-          cuidamos de lembrar você sempre que precisar.
+          Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
+          sempre que precisar.
         </Text>
 
-        <ButtonNext
-          title=">"
-          onPress={navigateToUserIdentification}
-        />
+        <ButtonNext title=">" onPress={navigateToUserIdentification} />
       </View>
     </SafeAreaView>
   )

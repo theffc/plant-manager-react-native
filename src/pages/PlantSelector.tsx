@@ -1,10 +1,5 @@
 import React from "react"
-import {
-  SafeAreaView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native"
+import { SafeAreaView, StyleSheet, Text, View } from "react-native"
 import { EnvironmentButtonList } from "../components/Environment/EnvironmentButtonList"
 import { Loading } from "../components/Loading"
 import { PlantCardList } from "../components/Plant/PlantCardList"
@@ -14,8 +9,7 @@ import fonts from "../styles/fonts"
 import { usePlantSelectorState } from "./PlantSelectorState"
 
 export function PlantSelector() {
-  const { state, selectEnvironment } =
-    usePlantSelectorState()
+  const { state, selectEnvironment } = usePlantSelectorState()
 
   if (state.requestState === "loading") {
     return <Loading></Loading>
@@ -32,9 +26,7 @@ export function PlantSelector() {
 
         <View style={styles.question}>
           <Text style={styles.first}>Em qual ambiente</Text>
-          <Text style={styles.second}>
-            Você quer colocar sua planta?
-          </Text>
+          <Text style={styles.second}>Você quer colocar sua planta?</Text>
         </View>
 
         <EnvironmentButtonList
@@ -45,10 +37,7 @@ export function PlantSelector() {
         />
       </View>
 
-      <PlantCardList
-        plants={state.filteredPlants}
-        style={styles.plants}
-      />
+      <PlantCardList plants={state.filteredPlants} style={styles.plants} />
     </SafeAreaView>
   )
 }

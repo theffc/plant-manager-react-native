@@ -4,26 +4,27 @@ import {
   TextStyle,
   View,
   ViewStyle,
+  TouchableWithoutFeedback,
 } from "react-native"
-import { TouchableWithoutFeedback } from "react-native-gesture-handler"
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable"
+// import { TouchableWithoutFeedback } from "react-native-gesture-handler"
+// import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable"
 import colors from "../../styles/colors"
 import fonts from "../../styles/fonts"
+import { StyleProp } from "../../utils/ReactUtils"
 
 type Props = {
   title: string
   isSelected?: boolean
-} & GenericTouchableProps
+  onPress: () => void
+} & StyleProp
 
 export const EnvironmentButton = (props: Props) => {
   const isSelected = props.isSelected ?? false
 
   return (
     <TouchableWithoutFeedback {...props}>
-      <View style={containerStyle(isSelected)}>
-        <Text style={textStyle(isSelected)}>
-          {props.title}
-        </Text>
+      <View style={[containerStyle(isSelected), props.style]}>
+        <Text style={textStyle(isSelected)}>{props.title}</Text>
       </View>
     </TouchableWithoutFeedback>
   )
@@ -38,9 +39,7 @@ function containerStyle(isSelected: boolean): ViewStyle {
     height: 40,
     borderRadius: 12,
     paddingHorizontal: 15,
-    backgroundColor: isSelected
-      ? colors.green_light
-      : colors.shape,
+    backgroundColor: isSelected ? colors.green_light : colors.shape,
   }
 }
 

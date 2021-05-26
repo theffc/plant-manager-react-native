@@ -1,11 +1,5 @@
 import React from "react"
-import {
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View,
-} from "react-native"
-import { GenericTouchableProps } from "react-native-gesture-handler/lib/typescript/components/touchables/GenericTouchable"
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native"
 import { SvgFromUri } from "react-native-svg"
 import colors from "../../styles/colors"
 import fonts from "../../styles/fonts"
@@ -13,17 +7,14 @@ import fonts from "../../styles/fonts"
 type Props = {
   name: string
   photo: string
-} & GenericTouchableProps
+} & React.ComponentProps<typeof TouchableHighlight>
 
 export const PlantCard = (props: Props) => {
   return (
     <TouchableHighlight {...props}>
       <View style={styles.card}>
         <View style={styles.imageContainer}>
-          <SvgFromUri
-            uri={props.photo}
-            style={styles.image}
-          />
+          <SvgFromUri uri={props.photo} style={styles.image} />
         </View>
         <Text style={styles.text} numberOfLines={2}>
           {props.name}

@@ -1,4 +1,4 @@
-import { Environment } from "./../models"
+import { Environment } from "../models"
 import { each, makeFactory } from "factory.ts"
 import { Plant } from "../models"
 import { makeFactoryWithRequired } from "factory.ts/lib/sync"
@@ -17,12 +17,9 @@ export const PlantFactory = makeFactory<Plant>({
   },
 })
 
-export const EnvironmentFactory = makeFactoryWithRequired<
-  Environment,
-  "key"
->({ title: "" }).withDerivation("title", env =>
-  env.key.toLocaleUpperCase(),
-)
+export const EnvironmentFactory = makeFactoryWithRequired<Environment, "key">({
+  title: "",
+}).withDerivation("title", env => env.key.toLocaleUpperCase())
 
 export const environments = [
   EnvironmentFactory.build({ key: "bathrrom" }),

@@ -22,23 +22,15 @@ export function UserIdentification() {
 
   const isInputFilled = () => name.length >= 3
 
-  const navigateToConfirmation = () =>
-    navigation.navigate(Screens.confirmation)
+  const navigateToConfirmation = () => navigation.navigate(Screens.confirmation)
 
   return (
-    <SafeAreaView
-      style={styles.container}
-      onTouchStart={Keyboard.dismiss}
-    >
+    <SafeAreaView style={styles.container} onTouchStart={Keyboard.dismiss}>
       <AvoidKeyboard>
         <View style={styles.form}>
-          <Text style={styles.text}>
-            Como podemos chamar você?
-          </Text>
+          <Text style={styles.text}>Como podemos chamar você?</Text>
 
-          <Text style={styles.emoji}>
-            {isInputFilled() ? "😄" : "🤔"}
-          </Text>
+          <Text style={styles.emoji}>{isInputFilled() ? "😄" : "🤔"}</Text>
 
           <NameInput
             setName={setName}
