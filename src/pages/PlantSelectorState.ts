@@ -6,7 +6,7 @@ import {
 } from "../services/api"
 import { Environment, Plant } from "./../services/models"
 
-const initialState = {
+export const initialState = {
   environments: [environmentAll],
   selectedEnvironment: environmentAll,
 
@@ -19,7 +19,7 @@ const initialState = {
     | "success",
 }
 
-type State = typeof initialState
+export type State = typeof initialState
 
 export const usePlantSelectorState = () => {
   const [state, _setState] = useState(initialState)
@@ -29,21 +29,12 @@ export const usePlantSelectorState = () => {
   }, [])
 
   async function _fetchData() {
-    let allServices
-    try {
-      allServices = await Promise.all([
-        fetchPlants(),
-        fetchEnvironments(),
-      ])
-    } catch {
-      _setPartialState({
-        requestState: "error",
-      })
+    const allResponses = await _callAllServices()
+    if (allResponses === undefined) {
       return
     }
 
-    const [{ data: plants }, { data: environments }] =
-      allServices
+    const [plants, environments] = allResponses
 
     plants.sort((a, b) => a.name.localeCompare(b.name))
 
@@ -57,6 +48,21 @@ export const usePlantSelectorState = () => {
       filteredPlants: plants,
       requestState: "success",
     })
+  }
+
+  async function _callAllServices() {
+    let allServices
+    try {
+      allServices = await Promise.all([
+        fetchPlants(),
+        fetchEnvironments(),
+      ])
+    } catch {
+      _setPartialState({
+        requestState: "error",
+      })
+    }
+    return allServices
   }
 
   function selectEnvironment(environment: Environment) {

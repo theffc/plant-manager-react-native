@@ -7,9 +7,13 @@ const api = axios.create({
 })
 
 export function fetchPlants() {
-  return api.get<Plant[]>("plants")
+  return api
+    .get<Plant[]>("plants")
+    .then(value => value.data)
 }
 
 export function fetchEnvironments() {
-  return api.get<Environment[]>("plants_environments")
+  return api
+    .get<Environment[]>("plants_environments")
+    .then(value => value.data)
 }
