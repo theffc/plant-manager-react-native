@@ -1,23 +1,23 @@
 import { act, renderHook } from "@testing-library/react-hooks"
 import { assign } from "lodash"
-import { environmentAll } from "../components/Environment/EnvironmentButtonList"
-import * as api from "../services/api"
-import { PlantFactory } from "../services/__test__/models"
-import { EnvironmentFactory, environments } from "../services/__test__/models"
+import { environmentAll } from "../../components/Environment/EnvironmentButtonList"
+import * as api from "../../services/api"
+import { PlantFactory } from "../../services/__test__/models"
+import { bathroom, environments } from "../../services/__test__/models"
 import {
   initialState,
   usePlantSelectorState,
   State,
-} from "./PlantSelectorState"
+} from "../PlantSelectorState"
 import { loadFeature, defineFeature } from "jest-cucumber"
 
-const feature = loadFeature("./src/pages/PlantSlectorState.feature")
+const feature = loadFeature("./src/pages/__test__/PlantSlectorState.feature")
 
-let { sut, state, waitForValueToChange } = {} as ReturnType<typeof aux.setup>
+let { sut, state, waitForValueToChange } = {} as ReturnType<typeof _.setup>
 
 defineFeature(feature, scenario => {
   beforeEach(() => {
-    ;({ sut, state, waitForValueToChange } = aux.setup())
+    ;({ sut, state, waitForValueToChange } = _.setup())
   })
 
   scenario("First successful data load", ({ given, when, then }) => {
@@ -26,7 +26,7 @@ defineFeature(feature, scenario => {
     })
 
     when("the first server response arrives with success", async () => {
-      await aux.waitForSuccessfullResponse()
+      await _.waitForSuccessfullResponse()
     })
 
     then("should have filter with all plants", () => {
@@ -40,7 +40,7 @@ defineFeature(feature, scenario => {
     let previousState: State
 
     given("it has succesfully loaded data", async () => {
-      await aux.waitForSuccessfullResponse()
+      await _.waitForSuccessfullResponse()
       previousState = state()
     })
 
@@ -52,17 +52,13 @@ defineFeature(feature, scenario => {
       expect(state()).toMatchObject({
         ...previousState,
         selectedEnvironment: bathroom,
-        filteredPlants: aux.getBathroomPlants(previousState),
+        filteredPlants: _.getBathroomPlants(previousState),
       })
     })
   })
 })
 
-const bathroom = EnvironmentFactory.build({
-  key: "bathroom",
-})
-
-const aux = {
+const _ = {
   setup() {
     this.mockServices()
 

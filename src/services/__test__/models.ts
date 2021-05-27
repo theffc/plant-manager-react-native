@@ -21,8 +21,12 @@ export const EnvironmentFactory = makeFactoryWithRequired<Environment, "key">({
   title: "",
 }).withDerivation("title", env => env.key.toLocaleUpperCase())
 
+export const bathroom = EnvironmentFactory.build({
+  key: "bathroom",
+})
+
 export const environments = [
-  EnvironmentFactory.build({ key: "bathrrom" }),
+  bathroom,
   EnvironmentFactory.build({ key: "kitchen" }),
   EnvironmentFactory.build({ key: "bedroom" }),
   EnvironmentFactory.build({ key: "living_room" }),
