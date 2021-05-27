@@ -7,8 +7,8 @@ export const initialState = {
   environments: [environmentAll],
   selectedEnvironment: environmentAll,
 
-  plants: [] as Plant[],
-  filteredPlants: [] as Plant[],
+  plants: new Array<Plant>(),
+  filteredPlants: new Array<Plant>(),
 
   requestState: "loading" as "loading" | "error" | "success",
 }
