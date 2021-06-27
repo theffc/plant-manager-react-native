@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { environmentAll } from "../components/Environment/EnvironmentButtonList"
 import { fetchEnvironments, fetchPlants } from "../services/api"
-import { Environment, Plant } from "./../services/models"
+import { Environment, Plant } from "../services/models"
 
 export const initialState = {
   environments: [environmentAll],
